@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Textarea, Button, Text, Alert, AlertIcon } from '@chakra-ui/core';
+import { Stack, Box, Textarea, Button, Text, Alert, AlertIcon } from '@chakra-ui/core';
 
 const Index = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ const Index = () => {
                 body: JSON.stringify({ to_convert: inputText })
             });
             const data = await response.json();
-            console.log(data)
+
             setData(data);
             setSucess(true);
         }
@@ -45,46 +45,63 @@ const Index = () => {
 
 
     return (
-        <Stack
+        <Box
             bg='#f5f5f5'
             display="flex"
-            flex="1"
             alignContent="center"
             justifyContent="center"
-            flexDirection='column'>
+            width="100vw"
+            height="100vh"
+        >
+            <Stack
+                alignItems="center"
+                justifyContent="center"
+            >
+                <Text
+                    fontSize="4xl"
+                    textAlign="center"
+                    fontWeight="bold"
+                    color="#319795"
 
-            <Text
-                fontSize="4xl"
-                textAlign="center"
+                >Pronome Neutre Conversor</Text>
 
-            >Pronome Neutre Conversor</Text>
+                <Textarea
+                    placeholder='Digite sua frase aqui'
+                    value={inputText}
+                    onChange={handleInputChange} />
 
-            <Textarea
-                placeholder='Digite sua frase aqui'
-                value={inputText}
-                onChange={handleInputChange} />
-
-            {inputIsVoid &&
-                <Alert status="warning">
-                    <AlertIcon />
+                {inputIsVoid &&
+                    <Alert status="warning">
+                        <AlertIcon />
                     Preencha o campo de texto!
                 </Alert>}
 
-            <Button
-                isLoading={isLoading}
-                loadingText="Convertendo"
-                variantColor="teal"
-                variant="solid"
-                size='lg'
-                onClick={handleOnClick}>
-                Converter
+                <Button
+                    isLoading={isLoading}
+                    loadingText="Convertendo"
+                    variantColor="teal"
+                    variant="solid"
+                    size='lg'
+                    onClick={handleOnClick}>
+                    Converter
             </Button>
-            {sucess &&
-                <Text fontSize="2xl">
-                    {data.converted}
-                </Text>}
-
-        </Stack>
+                {sucess &&
+                    <>
+                        <Text
+                            fontSize="2xl"
+                            textAlign="center"
+                            fontWeight="bold"
+                            color=''>
+                            Resultade de conversãe:
+                    </Text>
+                        <Text
+                            fontSize="1xl"
+                            textAlign="center">
+                            {data.converted}
+                        </Text>
+                    </>}
+            </Stack>
+        </Box >
     );
 }
 
