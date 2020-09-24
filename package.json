@@ -1,0 +1,31 @@
+{
+  "name": "pronome-neutre-conversor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./pages/index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salmomascarenhas/pronome-neutre-conversor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salmomascarenhas/pronome-neutre-conversor/issues"
+  },
+  "homepage": "https://github.com/salmomascarenhas/pronome-neutre-conversor#readme",
+  "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "next": "^9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
