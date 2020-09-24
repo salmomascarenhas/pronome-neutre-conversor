@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Stack, Textarea, Button, Text, Alert, AlertIcon } from '@chakra-ui/core';
-import { stringify } from 'querystring';
 
 const Index = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [sucess, setSucess] = useState(false);
     const [inputIsVoid, setInputIsVoid] = useState(false);
     const [inputText, setInputText] = useState('');
-    const [textToConvert, setTextToConvert] = useState({ to_convert: '' });
     const [data, setData] = useState({});
 
     const handleInputChange = e => {
@@ -16,15 +14,13 @@ const Index = () => {
     }
 
     const handleOnClick = async () => {
-        const to_convert = inputText;
 
-        if (!to_convert) {
+        if (!inputText) {
             setInputIsVoid(true);
             return;
         }
         setInputIsVoid(false);
-        setTextToConvert({ to_convert });
-        console.log(to_convert)
+
         try {
             setIsLoading(true);
             const response = await fetch('https://pronome-neutre-conversor.herokuapp.com/convert', {
@@ -32,7 +28,7 @@ const Index = () => {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify(textToConvert)
+                body: JSON.stringify({ to_convert: inputText })
             });
             const data = await response.json();
             console.log(data)
